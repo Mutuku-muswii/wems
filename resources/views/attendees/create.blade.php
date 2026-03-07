@@ -1,29 +1,36 @@
-<h2>Add Attendee to: {{ $event->title }}</h2>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Add Attendee</title>
+</head>
 
-@if ($errors->any())
-    <div style="color:red;">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+<body>
 
-<form action="{{ route('events.attendees.store', $event->id) }}" method="POST">
-    @csrf
+<h2>Add Attendee for {{ $event->title }}</h2>
 
-    <label>Name:</label><br>
-    <input type="text" name="name" required>
-    <br><br>
+<form method="POST" action="/events/{{ $event->id }}/attendees">
 
-    <label>Email:</label><br>
-    <input type="email" name="email" required>
-    <br><br>
+@csrf
 
-    <label>Phone:</label><br>
-    <input type="text" name="phone">
-    <br><br>
+<label>Name</label><br>
+<input type="text" name="name" required>
+<br><br>
 
-    <button type="submit">Add Attendee</button>
+<label>Email</label><br>
+<input type="email" name="email" required>
+<br><br>
+
+<label>Phone</label><br>
+<input type="text" name="phone">
+<br><br>
+
+<button type="submit">Add Attendee</button>
+
 </form>
+
+<br>
+
+<a href="/events">Back to Events</a>
+
+</body>
+</html>

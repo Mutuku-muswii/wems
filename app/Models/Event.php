@@ -22,6 +22,6 @@ public function user()
 }
 public function attendees()
 {
-    return $this->hasMany(Attendee::class);
+    return $this->hasMany(\App\Models\Attendee::class);
 }
 }

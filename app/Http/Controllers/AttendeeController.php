@@ -2,35 +2,38 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Event;
-use App\Models\Attendee;
 use Illuminate\Http\Request;
+use App\Models\Attendee;
+use App\Models\Event;
 
 class AttendeeController extends Controller
 {
-    public function create(Event $event)
+
+    public function create($id)
     {
+        $event = Event::findOrFail($id);
+
         return view('attendees.create', compact('event'));
     }
 
-    public function store(Request $request, Event $event)
+    public function store(Request $request, $id)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
+
+        $request->validate([
+            'name' => 'required',
             'email' => 'required|email',
-            'phone' => 'nullable|string|max:20'
+            'phone' => 'nullable'
         ]);
 
-        $event->attendees()->create($validated);
+        Attendee::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'event_id' => $id
+        ]);
 
-        return redirect()->route('events.show', $event->id)
-                         ->with('success', 'Attendee added successfully');
+        return redirect('/events')->with('success','Attendee added successfully');
+
     }
 
-    public function destroy(Event $event, Attendee $attendee)
-    {
-        $attendee->delete();
-
-        return back()->with('success', 'Attendee removed');
-    }
 }

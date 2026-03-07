@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AttendeeController;
+
+Route::get('/events/{id}/attendees/create', [AttendeeController::class, 'create']);
+Route::post('/events/{id}/attendees', [AttendeeController::class, 'store']);
 
 Route::get('/', function () {
     return view('welcome');
