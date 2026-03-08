@@ -2,61 +2,62 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Event;
 use Illuminate\Http\Request;
+use App\Models\Event;
+use App\Models\Client;
 
 class EventController extends Controller
 {
+
     public function index()
     {
-        $events = Event::all();
+        $events = Event::with('client')->get();
+
         return view('events.index', compact('events'));
     }
 
     public function create()
     {
-        return view('events.create');
+        $clients = Client::all();
+
+        return view('events.create', compact('clients'));
     }
 
     public function store(Request $request)
-{
-    $validated = $request->validate([
-        'title' => 'required|string|max:255',
-        'event_date' => 'required|date',
-        'location' => 'required|string|max:255',
-        'budget' => 'nullable|numeric|min:0',
-        'description' => 'nullable|string',
-        'status' => 'required|in:planned,ongoing,completed'
-    ]);
-
-    $validated['user_id'] = auth()->id();
-
-    Event::create($validated);
-
-    return redirect()->route('events.index')
-                     ->with('success', 'Event created successfully');
-}
-
-    public function edit(Event $event)
     {
-        return view('events.edit', compact('event'));
+        $request->validate([
+            'title' => 'required',
+            'client_id' => 'required',
+            'event_date' => 'required',
+            'location' => 'required'
+        ]);
+
+        Event::create([
+            'title' => $request->title,
+            'client_id' => $request->client_id,
+            'event_date' => $request->event_date,
+            'location' => $request->location,
+            'budget' => $request->budget,
+            'description' => $request->description,
+            'status' => $request->status,
+            'user_id' => auth()->id()
+        ]);
+
+        return redirect('/events')->with('success','Event created successfully');
     }
 
-    public function update(Request $request, Event $event)
+    public function show($id)
     {
-        $event->update($request->all());
-        return redirect()->route('events.index');
+        $event = Event::with(['client','attendees'])->findOrFail($id);
+
+        return view('events.show', compact('event'));
     }
 
-    public function destroy(Event $event)
+    public function destroy($id)
     {
-        $event->delete();
-        return redirect()->route('events.index');
-    }
-    public function show(Event $event)
-{
-    $event->load('attendees', 'user');
+        Event::destroy($id);
 
-    return view('events.show', compact('event'));
-}
+        return redirect('/events')->with('success','Event deleted');
+    }
+
 }

@@ -13,9 +13,13 @@ class Event extends Model
     'budget',
     'description',
     'status',
-    'user_id'
+    'user_id',
+    'client_id'
 ];
-
+public function client()
+{
+    return $this->belongsTo(Client::class);
+}
 public function user()
 {
     return $this->belongsTo(User::class);

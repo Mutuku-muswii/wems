@@ -2,27 +2,34 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AttendeeController;
-
-Route::get('/events/{id}/attendees/create', [AttendeeController::class, 'create']);
-Route::post('/events/{id}/attendees', [AttendeeController::class, 'store']);
+use App\Http\Controllers\ClientController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth', 'verified'])->group(function () {
+/*
+| Events
+*/
 
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+Route::get('/events', [EventController::class, 'index']);
+Route::get('/events/create', [EventController::class, 'create']);
+Route::post('/events', [EventController::class, 'store']);
+Route::get('/events/{id}', [EventController::class, 'show']);
+Route::delete('/events/{id}', [EventController::class, 'destroy']);
 
-    Route::resource('events', EventController::class);
-Route::resource('events.attendees', AttendeeController::class);
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+/*
+| Attendees
+*/
 
-require __DIR__.'/auth.php';
+Route::get('/events/{id}/attendees/create', [AttendeeController::class, 'create']);
+Route::post('/events/{id}/attendees', [AttendeeController::class, 'store']);
+
+/*
+| Clients
+*/
+
+Route::get('/clients', [ClientController::class,'index']);
+Route::get('/clients/create', [ClientController::class,'create']);
+Route::post('/clients', [ClientController::class,'store']);

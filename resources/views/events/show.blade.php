@@ -1,44 +1,58 @@
-<h1>Event Details</h1>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Event Details</title>
+</head>
 
-@if(session('success'))
-    <p style="color:green;">{{ session('success') }}</p>
-@endif
+<body>
 
-<p><strong>Title:</strong> {{ $event->title }}</p>
-<p><strong>Description:</strong> {{ $event->description }}</p>
+<h1>{{ $event->title }}</h1>
+
+<p><strong>Client:</strong> {{ $event->client->name }}</p>
+
 <p><strong>Date:</strong> {{ $event->event_date }}</p>
+
 <p><strong>Location:</strong> {{ $event->location }}</p>
-<p><strong>Budget:</strong> {{ $event->budget }}</p>
-<p><strong>Status:</strong> {{ ucfirst($event->status) }}</p>
-<p><strong>Owner:</strong> {{ $event->user->name ?? 'N/A' }}</p>
+
+<p><strong>Status:</strong> {{ $event->status }}</p>
+
+<p><strong>Description:</strong> {{ $event->description }}</p>
 
 <hr>
 
 <h2>Attendees</h2>
 
-<a href="{{ route('events.attendees.create', $event->id) }}">
-    Add Attendee
+<a href="/events/{{ $event->id }}/attendees/create">
+Add Attendee
 </a>
 
-@if($event->attendees->count())
-    <ul>
-        @foreach($event->attendees as $attendee)
-            <li>
-                {{ $attendee->name }} ({{ $attendee->email }})
+<br><br>
 
-                <form action="{{ route('events.attendees.destroy', [$event->id, $attendee->id]) }}"
-                      method="POST"
-                      style="display:inline;">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit">Remove</button>
-                </form>
-            </li>
-        @endforeach
-    </ul>
-@else
-    <p>No attendees yet.</p>
-@endif
+<table border="1" cellpadding="10">
+
+<tr>
+<th>Name</th>
+<th>Email</th>
+<th>Phone</th>
+</tr>
+
+@foreach($event->attendees as $attendee)
+
+<tr>
+
+<td>{{ $attendee->name }}</td>
+<td>{{ $attendee->email }}</td>
+<td>{{ $attendee->phone }}</td>
+
+</tr>
+
+@endforeach
+
+</table>
 
 <br>
-<a href="{{ route('events.index') }}">Back to Events</a>
+
+<a href="/events">Back to Events</a>
+
+</body>
+</html>

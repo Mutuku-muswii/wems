@@ -1,30 +1,82 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Add Attendee</title>
+    <title>Create Event</title>
 </head>
 
 <body>
 
-<h2>Add Attendee for {{ $event->title }}</h2>
+<h1>Create Event</h1>
 
-<form method="POST" action="/events/{{ $event->id }}/attendees">
+@if ($errors->any())
+<div style="color:red;">
+    <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+
+<form method="POST" action="/events">
 
 @csrf
 
-<label>Name</label><br>
-<input type="text" name="name" required>
+<label>Event Title</label>
+<br>
+<input type="text" name="title" required>
 <br><br>
 
-<label>Email</label><br>
-<input type="email" name="email" required>
+<label>Client</label>
+<br>
+<select name="client_id" required>
+
+<option value="">Select Client</option>
+
+@foreach($clients as $client)
+
+<option value="{{ $client->id }}">
+{{ $client->name }}
+</option>
+
+@endforeach
+
+</select>
 <br><br>
 
-<label>Phone</label><br>
-<input type="text" name="phone">
+<label>Event Date</label>
+<br>
+<input type="date" name="event_date" required>
 <br><br>
 
-<button type="submit">Add Attendee</button>
+<label>Location</label>
+<br>
+<input type="text" name="location" required>
+<br><br>
+
+<label>Budget</label>
+<br>
+<input type="number" name="budget">
+<br><br>
+
+<label>Description</label>
+<br>
+<textarea name="description"></textarea>
+<br><br>
+
+<label>Status</label>
+<br>
+<select name="status">
+
+<option value="planned">Planned</option>
+<option value="ongoing">Ongoing</option>
+<option value="completed">Completed</option>
+
+</select>
+
+<br><br>
+
+<button type="submit">Create Event</button>
 
 </form>
 
