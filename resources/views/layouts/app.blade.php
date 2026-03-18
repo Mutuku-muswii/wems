@@ -1,36 +1,73 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<html>
+<head>
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+<title>Waridi Events Management System</title>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
+<style>
 
-            <!-- Page Heading -->
-            @isset($header)
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endisset
+body{
+background:#f4f6f9;
+}
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
-        </div>
-    </body>
+.sidebar{
+width:220px;
+height:100vh;
+position:fixed;
+background:#343a40;
+padding-top:20px;
+}
+
+.sidebar a{
+display:block;
+color:white;
+padding:12px;
+text-decoration:none;
+}
+
+.sidebar a:hover{
+background:#495057;
+}
+
+.content{
+margin-left:240px;
+padding:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<h5 class="text-white text-center mb-4">WEMS</h5>
+
+<a href="/dashboard">Dashboard</a>
+
+<a href="/clients">Clients</a>
+
+<a href="/events">Events</a>
+
+<a href="/vendors">Vendors</a>
+
+<a href="/users">Users</a>
+
+<form method="POST" action="{{ route('logout') }}">
+@csrf
+<button class="btn btn-danger w-100 mt-3">Logout</button>
+</form>
+
+</div>
+<div class="content">
+
+@yield('content')
+
+</div>
+
+</body>
+
 </html>

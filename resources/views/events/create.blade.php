@@ -1,45 +1,84 @@
-<h1>Create Event</h1>
+@extends('layouts.app')
+
+@section('content')
+
+<h2>Create Event</h2>
 
 @if ($errors->any())
-    <div style="color:red;">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
+<div class="alert alert-danger">
+<ul>
+
+@foreach ($errors->all() as $error)
+<li>{{ $error }}</li>
+@endforeach
+
+</ul>
+</div>
 @endif
 
-<form action="{{ route('events.store') }}" method="POST">
-    @csrf
+<form method="POST" action="/events">
 
-    <label>Title:</label><br>
-    <input type="text" name="title" value="{{ old('title') }}" required>
-    <br><br>
+@csrf
 
-    <label>Description:</label><br>
-    <textarea name="description">{{ old('description') }}</textarea>
-    <br><br>
+<div class="mb-3">
+<label class="form-label">Event Title</label>
+<input type="text" name="title" class="form-control" required>
+</div>
 
-    <label>Date:</label><br>
-    <input type="date" name="event_date" value="{{ old('event_date') }}" required>
-    <br><br>
+<div class="mb-3">
+<label class="form-label">Client</label>
 
-    <label>Location:</label><br>
-    <input type="text" name="location" value="{{ old('location') }}" required>
-    <br><br>
+<select name="client_id" class="form-control" required>
 
-    <label>Budget:</label><br>
-    <input type="number" step="0.01" name="budget" value="{{ old('budget') }}">
-    <br><br>
+<option value="">Select Client</option>
 
-    <label>Status:</label><br>
-    <select name="status" required>
-        <option value="planned">Planned</option>
-        <option value="ongoing">Ongoing</option>
-        <option value="completed">Completed</option>
-    </select>
-    <br><br>
+@foreach($clients as $client)
 
-    <button type="submit">Create Event</button>
+<option value="{{ $client->id }}">
+{{ $client->name }}
+</option>
+
+@endforeach
+
+</select>
+
+</div>
+
+<div class="mb-3">
+<label class="form-label">Event Date</label>
+<input type="date" name="event_date" class="form-control" required>
+</div>
+
+<div class="mb-3">
+<label class="form-label">Location</label>
+<input type="text" name="location" class="form-control" required>
+</div>
+
+<div class="mb-3">
+<label class="form-label">Budget</label>
+<input type="number" name="budget" class="form-control">
+</div>
+
+<div class="mb-3">
+<label class="form-label">Description</label>
+<textarea name="description" class="form-control"></textarea>
+</div>
+
+<div class="mb-3">
+<label class="form-label">Status</label>
+
+<select name="status" class="form-control">
+<option value="planned">Planned</option>
+<option value="ongoing">Ongoing</option>
+<option value="completed">Completed</option>
+</select>
+
+</div>
+
+<button type="submit" class="btn btn-primary">
+Create Event
+</button>
+
 </form>
+
+@endsection

@@ -1,35 +1,45 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\EventController;
-use App\Http\Controllers\AttendeeController;
+
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\VendorController;
+use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\AttendeeController;
+use App\Http\Controllers\UserController;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+*/
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('dashboard');
 });
 
-/*
-| Events
-*/
+Route::middleware(['auth'])->group(function () {
 
-Route::get('/events', [EventController::class, 'index']);
-Route::get('/events/create', [EventController::class, 'create']);
-Route::post('/events', [EventController::class, 'store']);
-Route::get('/events/{id}', [EventController::class, 'show']);
-Route::delete('/events/{id}', [EventController::class, 'destroy']);
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-/*
-| Attendees
-*/
+    Route::resource('clients', ClientController::class);
 
-Route::get('/events/{id}/attendees/create', [AttendeeController::class, 'create']);
-Route::post('/events/{id}/attendees', [AttendeeController::class, 'store']);
+    Route::resource('events', EventController::class);
 
-/*
-| Clients
-*/
+    Route::resource('vendors', VendorController::class);
 
-Route::get('/clients', [ClientController::class,'index']);
-Route::get('/clients/create', [ClientController::class,'create']);
-Route::post('/clients', [ClientController::class,'store']);
+    Route::resource('users', UserController::class);
+
+    Route::get('/services/create/{event}', [ServiceController::class, 'create'])->name('services.create');
+
+    Route::post('/services', [ServiceController::class, 'store'])->name('services.store');
+
+    Route::get('/attendees/create/{event}', [AttendeeController::class, 'create'])->name('attendees.create');
+
+    Route::post('/attendees', [AttendeeController::class, 'store'])->name('attendees.store');
+
+});
+
+require __DIR__.'/auth.php';

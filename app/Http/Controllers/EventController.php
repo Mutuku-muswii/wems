@@ -25,6 +25,7 @@ class EventController extends Controller
 
     public function store(Request $request)
     {
+
         $request->validate([
             'title' => 'required',
             'client_id' => 'required',
@@ -43,21 +44,47 @@ class EventController extends Controller
             'user_id' => auth()->id()
         ]);
 
-        return redirect('/events')->with('success','Event created successfully');
+        return redirect('/events')
+               ->with('success','Event created successfully');
+
     }
 
     public function show($id)
-    {
-        $event = Event::with(['client','attendees'])->findOrFail($id);
+{
+    $event = \App\Models\Event::with(['services','attendees'])->findOrFail($id);
 
-        return view('events.show', compact('event'));
+    $totalServices = $event->services->sum('cost');
+
+    $remainingBudget = $event->budget - $totalServices;
+
+    $budgetUsage = 0;
+
+    if ($event->budget > 0) {
+        $budgetUsage = ($totalServices / $event->budget) * 100;
     }
+
+    $attendeeCount = $event->attendees->count();
+
+    $serviceCount = $event->services->count();
+
+    return view('events.show', compact(
+        'event',
+        'totalServices',
+        'remainingBudget',
+        'budgetUsage',
+        'attendeeCount',
+        'serviceCount'
+    ));
+}
 
     public function destroy($id)
     {
+
         Event::destroy($id);
 
-        return redirect('/events')->with('success','Event deleted');
+        return redirect('/events')
+               ->with('success','Event deleted');
+
     }
 
 }

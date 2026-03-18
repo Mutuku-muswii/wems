@@ -1,23 +1,20 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Events</title>
-</head>
+@extends('layouts.app')
 
-<body>
+@section('content')
 
-<h1>Events</h1>
+<h2>Events</h2>
 
 @if(session('success'))
-<p style="color:green">{{ session('success') }}</p>
+<div class="alert alert-success">
+{{ session('success') }}
+</div>
 @endif
 
-<a href="/events/create">Create Event</a>
+<a href="/events/create" class="btn btn-primary mb-3">Create Event</a>
 
-<br><br>
+<table class="table table-bordered">
 
-<table border="1" cellpadding="10">
-
+<thead>
 <tr>
 <th>Title</th>
 <th>Client</th>
@@ -26,6 +23,9 @@
 <th>Status</th>
 <th>Actions</th>
 </tr>
+</thead>
+
+<tbody>
 
 @foreach($events as $event)
 
@@ -43,21 +43,13 @@
 
 <td>
 
-<a href="/events/{{ $event->id }}">View</a>
-
-|
-
-<a href="/events/{{ $event->id }}/attendees/create">
-Add Attendee
+<a href="/events/{{ $event->id }}" class="btn btn-sm btn-info">
+View
 </a>
 
-|
-
-<form action="/events/{{ $event->id }}" method="POST" style="display:inline;">
-@csrf
-@method('DELETE')
-<button type="submit">Delete</button>
-</form>
+<a href="/events/{{ $event->id }}/attendees/create" class="btn btn-sm btn-success">
+Add Attendee
+</a>
 
 </td>
 
@@ -65,7 +57,8 @@ Add Attendee
 
 @endforeach
 
+</tbody>
+
 </table>
 
-</body>
-</html>
+@endsection
