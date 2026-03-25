@@ -8,32 +8,32 @@ use App\Models\Event;
 
 class AttendeeController extends Controller
 {
-
-    public function create($id)
+    public function create(Event $event)
     {
-        $event = Event::findOrFail($id);
-
         return view('attendees.create', compact('event'));
     }
 
-    public function store(Request $request, $id)
+    public function store(Request $request)
     {
-
         $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-            'phone' => 'nullable'
+            'event_id' => 'required|exists:events,id',
+            'name' => 'required|string|max:255',
+            'email' => 'nullable|email',
+            'phone' => 'nullable|string',
         ]);
 
-        Attendee::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'event_id' => $id
-        ]);
+        Attendee::create($request->all());
 
-        return redirect('/events')->with('success','Attendee added successfully');
-
+        return redirect()->route('events.show', $request->event_id)
+            ->with('success', 'Attendee added successfully');
     }
 
+    public function destroy(Attendee $attendee)
+    {
+        $event_id = $attendee->event_id;
+        $attendee->delete();
+        
+        return redirect()->route('events.show', $event_id)
+            ->with('success', 'Attendee removed successfully');
+    }
 }

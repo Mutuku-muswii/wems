@@ -5,24 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Service extends Model
+class Vendor extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'event_id',
-        'vendor_id',
         'name',
-        'cost'
+        'service_type',
+        'contact',
+        'email',
+        'phone',
+        'address'
     ];
 
-    public function event()
+    public function services()
     {
-        return $this->belongsTo(Event::class);
-    }
-
-    public function vendor()
-    {
-        return $this->belongsTo(Vendor::class);
+        return $this->hasMany(Service::class);
     }
 }

@@ -13,7 +13,8 @@ class Service extends Model
         'event_id',
         'vendor_id',
         'name',
-        'cost'
+        'cost',
+        'description',
     ];
 
     public function event()

@@ -1,42 +1,60 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Clients</title>
-</head>
+@extends('layouts.app')
 
-<body>
+@section('title', 'Clients - WEMS')
+@section('page-title', 'Manage Clients')
 
-<h1>Clients</h1>
-
-@if(session('success'))
-<p style="color:green">{{ session('success') }}</p>
-@endif
-
-<a href="/clients/create">Add Client</a>
-
-<br><br>
-
-<table border="1" cellpadding="10">
-
-<tr>
-<th>Name</th>
-<th>Email</th>
-<th>Phone</th>
-</tr>
-
-@foreach($clients as $client)
-
-<tr>
-
-<td>{{ $client->name }}</td>
-<td>{{ $client->email }}</td>
-<td>{{ $client->phone }}</td>
-
-</tr>
-
-@endforeach
-
-</table>
-
-</body>
-</html>
+@section('content')
+<div class="content-card">
+    <div class="content-card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0">All Clients</h5>
+        <a href="{{ route('clients.create') }}" class="btn btn-primary">
+            <i class="bi bi-plus-lg me-2"></i>Add Client
+        </a>
+    </div>
+    <div class="content-card-body">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Events</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($clients as $client)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $client->name }}</td>
+                        <td>{{ $client->email ?? 'N/A' }}</td>
+                        <td>{{ $client->phone ?? 'N/A' }}</td>
+                        <td>
+                            <span class="badge bg-info">{{ $client->events->count() }}</span>
+                        </td>
+                        <td>
+                            <a href="{{ route('clients.edit', $client) }}" class="btn btn-sm btn-outline-primary">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <form action="{{ route('clients.destroy', $client) }}" method="POST" class="d-inline" onsubmit="return confirm('Delete this client?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    @empty
+                    <tr>
+                        <td colspan="6" class="text-center py-4 text-muted">No clients found. Add your first client!</td>
+                    </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@endsection
