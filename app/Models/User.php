@@ -14,7 +14,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role'
+        'role',
+        'client_id',
+        'vendor_id',
+        'phone',
     ];
 
     protected $hidden = [
@@ -30,8 +33,40 @@ class User extends Authenticatable
         ];
     }
 
-    public function isAdmin()
+    // Helper methods for role checking
+    public function isAdmin(): bool
     {
         return $this->role === 'admin';
+    }
+
+    public function isManager(): bool
+    {
+        return $this->role === 'manager';
+    }
+
+    public function isStaff(): bool
+    {
+        return $this->role === 'staff';
+    }
+
+    public function isClient(): bool
+    {
+        return $this->role === 'client';
+    }
+
+    public function isVendor(): bool
+    {
+        return $this->role === 'vendor';
+    }
+
+    // Relationships
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
+    }
+
+    public function vendor()
+    {
+        return $this->belongsTo(Vendor::class);
     }
 }

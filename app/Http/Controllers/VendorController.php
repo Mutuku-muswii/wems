@@ -7,10 +7,9 @@ use Illuminate\Http\Request;
 
 class VendorController extends Controller
 {
-
     public function index()
     {
-        $vendors = Vendor::all();
+        $vendors = Vendor::withCount('services')->get();
         return view('vendors.index', compact('vendors'));
     }
 
@@ -21,10 +20,24 @@ class VendorController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'service_type' => 'required|string|max:255',
+            'contact' => 'nullable|string|max:255',
+            'email' => 'nullable|email|max:255',
+            'phone' => 'nullable|string|max:20',
+            'address' => 'nullable|string'
+        ]);
+
         Vendor::create($request->all());
 
-        return redirect()->route('vendors.index')
-            ->with('success', 'Vendor created successfully.');
+        return redirect()->route('vendors.index')->with('success', 'Vendor created successfully');
+    }
+
+    public function show(Vendor $vendor)
+    {
+        $vendor->load('services.event');
+        return view('vendors.show', compact('vendor'));
     }
 
     public function edit(Vendor $vendor)
@@ -34,17 +47,28 @@ class VendorController extends Controller
 
     public function update(Request $request, Vendor $vendor)
     {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'service_type' => 'required|string|max:255',
+            'contact' => 'nullable|string|max:255',
+            'email' => 'nullable|email|max:255',
+            'phone' => 'nullable|string|max:20',
+            'address' => 'nullable|string'
+        ]);
+
         $vendor->update($request->all());
 
-        return redirect()->route('vendors.index')
-            ->with('success', 'Vendor updated successfully.');
+        return redirect()->route('vendors.index')->with('success', 'Vendor updated successfully');
     }
 
     public function destroy(Vendor $vendor)
     {
-        $vendor->delete();
+        // Prevent deletion if vendor has services
+        if ($vendor->services()->count() > 0) {
+            return redirect()->route('vendors.index')->with('error', 'Cannot delete vendor with existing services');
+        }
 
-        return redirect()->route('vendors.index')
-            ->with('success', 'Vendor deleted successfully.');
+        $vendor->delete();
+        return redirect()->route('vendors.index')->with('success', 'Vendor deleted successfully');
     }
 }

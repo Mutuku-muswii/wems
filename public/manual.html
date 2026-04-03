@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WEMS Screenshots</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; }
+        .screenshot-section { margin: 50px 0; border: 3px solid #333; page-break-after: always; }
+        .sidebar { width: 260px; height: 100vh; position: fixed; left: 0; top: 0; background: #2c3e50; color: white; padding: 20px; }
+        .main-content { margin-left: 260px; padding: 20px; background: #f8f9fa; min-height: 100vh; }
+        .stat-card { background: white; border-radius: 12px; padding: 25px; box-shadow: 0 2px 15px rgba(0,0,0,0.05); border-left: 4px solid; margin-bottom: 20px; }
+        .content-card { background: white; border-radius: 12px; box-shadow: 0 2px 15px rgba(0,0,0,0.05); overflow: hidden; margin-bottom: 20px; }
+        .content-card-header { padding: 20px 25px; border-bottom: 1px solid #ecf0f1; background: #fafbfc; }
+        .content-card-body { padding: 25px; }
+        .login-box { max-width: 450px; margin: 100px auto; background: white; border-radius: 20px; padding: 40px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+        .nav-link { color: rgba(255,255,255,0.8); padding: 15px 20px; display: flex; align-items: center; gap: 10px; text-decoration: none; border-left: 4px solid transparent; }
+        .nav-link.active { color: white; background: rgba(255,255,255,0.1); border-left-color: #e74c3c; }
+        .badge { padding: 8px 12px; border-radius: 6px; }
+        .alert { border-radius: 10px; padding: 15px 20px; margin-bottom: 20px; }
+        .form-control, .form-select { border-radius: 8px; padding: 12px 15px; border: 1px solid #dee2e6; }
+        .btn { border-radius: 8px; padding: 10px 20px; }
+        .progress { height: 25px; border-radius: 12px; }
+        .top-navbar { background: white; padding: 15px 25px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center; }
+    </style>
+</head>
+<body>
+
+<!-- SCREENSHOT 1: LOGIN PAGE -->
+<div class="screenshot-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center;">
+    <div class="login-box text-center">
+        <i class="bi bi-calendar-event" style="font-size: 4rem; color: #3498db;"></i>
+        <h3 class="mt-3">WEMS</h3>
+        <p class="text-muted">Waridi Events Management System</p>
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" value="admin@waridi.com" disabled>
+            <label>Email address</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="password" class="form-control" value="********" disabled>
+            <label>Password</label>
+        </div>
+        <button class="btn btn-primary w-100 btn-lg" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none;">
+            <i class="bi bi-box-arrow-in-right me-2"></i>Sign In
+        </button>
+        <p class="mt-3 text-muted"><small>Demo: admin@waridi.com / password</small></p>
+    </div>
+</div>
+
+<!-- SCREENSHOT 2: DASHBOARD -->
+<div class="screenshot-section">
+    <div class="sidebar">
+        <h4><i class="bi bi-calendar-event"></i> WEMS</h4>
+        <small style="color: #bdc3c7;">Waridi Events Management</small>
+        <nav class="mt-4">
+            <a href="#" class="nav-link active"><i class="bi bi-speedometer2"></i> Dashboard</a>
+            <a href="#" class="nav-link"><i class="bi bi-people"></i> Clients</a>
+            <a href="#" class="nav-link"><i class="bi bi-calendar-check"></i> Events</a>
+            <a href="#" class="nav-link"><i class="bi bi-shop"></i> Vendors</a>
+            <a href="#" class="nav-link"><i class="bi bi-person-gear"></i> Users</a>
+        </nav>
+    </div>
+    <div class="main-content">
+        <div class="top-navbar">
+            <div>
+                <h5 class="mb-0">Dashboard Overview</h5>
+                <small class="text-muted">Monday, March 20, 2024</small>
+            </div>
+            <div>Welcome, System Admin <i class="bi bi-person-circle ms-2"></i></div>
+        </div>
+        
+        <div class="row g-4 mb-4">
+            <div class="col-md-3">
+                <div class="stat-card" style="border-left-color: #3498db;">
+                    <div class="d-flex align-items-center mb-3">
+                        <div style="width: 50px; height: 50px; background: #ebf5fb; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #3498db; font-size: 1.5rem;">
+                            <i class="bi bi-calendar-check"></i>
+                        </div>
+                    </div>
+                    <h3 style="font-weight: 700; color: #2c3e50;">4</h3>
+                    <p class="text-muted mb-0">Total Events</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-card" style="border-left-color: #27ae60;">
+                    <div class="d-flex align-items-center mb-3">
+                        <div style="width: 50px; height: 50px; background: #eafaf1; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #27ae60; font-size: 1.5rem;">
+                            <i class="bi bi-people"></i>
+                        </div>
+                    </div>
+                    <h3 style="font-weight: 700; color: #2c3e50;">3</h3>
+                    <p class="text-muted mb-0">Active Clients</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-card" style="border-left-color: #f39c12;">
+                    <div class="d-flex align-items-center mb-3">
+                        <div style="width: 50px; height: 50px; background: #fef5e7; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #f39c12; font-size: 1.5rem;">
+                            <i class="bi bi-shop"></i>
+                        </div>
+                    </div>
+                    <h3 style="font-weight: 700; color: #2c3e50;">4</h3>
+                    <p class="text-muted mb-0">Vendors</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-card" style="border-left-color: #e74c3c;">
+                    <div class="d-flex align-items-center mb-3">
+                        <div style="width: 50px; height: 50px; background: #fdedec; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #e74c3c; font-size: 1.5rem;">
+                            <i class="bi bi-person-check"></i>
+                        </div>
+                    </div>
+                    <h3 style="font-weight: 700; color: #2c3e50;">8</h3>
+                    <p class="text-muted mb-0">Attendees</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <div class="content-card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Recent Events</h5>
+                <button class="btn btn-sm btn-primary">View All</button>
+            </div>
+            <div class="content-card-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Event</th>
+                            <th>Client</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Johnson Wedding Reception</td>
+                            <td>Johnson Wedding Party</td>
+                            <td>Jun 15, 2024</td>
+                            <td><span class="badge bg-success">Confirmed</span></td>
+                        </tr>
+                        <tr>
+                            <td>Safaricom 25th Anniversary Gala</td>
+                            <td>Safaricom PLC</td>
+                            <td>Oct 20, 2024</td>
+                            <td><span class="badge bg-primary">Planning</span></td>
+                        </tr>
+                        <tr>
+                            <td>Nairobi Chapel Youth Conference</td>
+                            <td>Nairobi Chapel</td>
+                            <td>Aug 10, 2024</td>
+                            <td><span class="badge bg-primary">Planning</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SCREENSHOT 3: CLIENT LISTING -->
+<div class="screenshot-section">
+    <div class="sidebar">
+        <h4><i class="bi bi-calendar-event"></i> WEMS</h4>
+        <nav class="mt-4">
+            <a href="#" class="nav-link"><i class="bi bi-speedometer2"></i> Dashboard</a>
+            <a href="#" class="nav-link active"><i class="bi bi-people"></i> Clients</a>
+            <a href="#" class="nav-link"><i class="bi bi-calendar-check"></i> Events</a>
+            <a href="#" class="nav-link"><i class="bi bi-shop"></i> Vendors</a>
+        </nav>
+    </div>
+    <div class="main-content">
+        <div class="top-navbar">
+            <h5 class="mb-0">Manage Clients</h5>
+            <div>Welcome, System Admin</div>
+        </div>
+        
+        <div class="content-card">
+            <div class="content-card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">All Clients</h5>
+                <button class="btn btn-primary"><i class="bi bi-plus-lg me-2"></i>Add Client</button>
+            </div>
+            <div class="content-card-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Events</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Johnson Wedding Party</td>
+                            <td>johnson.family@email.com</td>
+                            <td>0722123456</td>
+                            <td><span class="badge bg-info">1</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></button>
+                                <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Safaricom PLC</td>
+                            <td>events@safaricom.co.ke</td>
+                            <td>0722123457</td>
+                            <td><span class="badge bg-info">2</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></button>
+                                <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Nairobi Chapel</td>
+                            <td>admin@nairobichapel.org</td>
+                            <td>0722123458</td>
+                            <td><span class="badge bg-info">1</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></button>
+                                <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SCREENSHOT 4: ADD CLIENT FORM -->
+<div class="screenshot-section">
+    <div class="sidebar">
+        <h4><i class="bi bi-calendar-event"></i> WEMS</h4>
+        <nav class="mt-4">
+            <a href="#" class="nav-link"><i class="bi bi-speedometer2"></i> Dashboard</a>
+            <a href="#" class="nav-link active"><i class="bi bi-people"></i> Clients</a>
+            <a href="#" class="nav-link"><i class="bi bi-calendar-check"></i> Events</a>
+        </nav>
+    </div>
+    <div class="main-content">
+        <div class="top-navbar">
+            <h5 class="mb-0">Add New Client</h5>
+            <div>Welcome, System Admin</div>
+        </div>
+        
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="content-card">
+                    <div class="content-card-header">
+                        <h5 class="mb-0">Client Information</h5>
+                    </div>
+                    <div class="content-card-body">
+                        <form>
+                            <div class="mb-3">
+                                <label class="form-label">Full Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" value="Corporate Events Ltd" disabled>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Email <span class="text-danger">*</span></label>
+                                <input type="email" class="form-control" value="info@corporateevents.co.ke" disabled>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Phone Number</label>
+                                <input type="text" class="form-control" value="0722999888" disabled>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <button type="button" class="btn btn-secondary">Cancel</button>
+                                <button type="button" class="btn btn-primary">Save Client</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SCREENSHOT 5: EVENT DETAILS WITH BUDGET -->
+<div class="screenshot-section">
+    <div class="sidebar">
+        <h4><i class="bi bi-calendar-event"></i> WEMS</h4>
+        <nav class="mt-4">
+            <a href="#" class="nav-link"><i class="bi bi-speedometer2"></i> Dashboard</a>
+            <a href="#" class="nav-link"><i class="bi bi-people"></i> Clients</a>
+            <a href="#" class="nav-link active"><i class="bi bi-calendar-check"></i> Events</a>
+        </nav>
+    </div>
+    <div class="main-content">
+        <div class="top-navbar">
+            <div>
+                <h5 class="mb-0">Johnson Wedding Reception</h5>
+                <small class="text-muted">Johnson Wedding Party | Jun 15, 2024 | Karen Country Club</small>
+            </div>
+            <span class="badge bg-success" style="font-size: 1rem;">Confirmed</span>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="content-card h-100">
+                    <div class="content-card-header">
+                        <h5 class="mb-0"><i class="bi bi-cash-stack me-2"></i>Budget Overview</h5>
+                    </div>
+                    <div class="content-card-body">
+                        <div class="mb-3 text-center">
+                            <small class="text-muted">Total Budget</small>
+                            <h4 class="text-primary">KES 450,000.00</h4>
+                        </div>
+                        <div class="mb-3 text-center">
+                            <small class="text-muted">Total Spent</small>
+                            <h4 class="text-danger">KES 345,000.00</h4>
+                        </div>
+                        <hr>
+                        <div class="text-center">
+                            <small class="text-muted">Remaining</small>
+                            <h4 class="text-success">KES 105,000.00</h4>
+                        </div>
+                        <div class="progress mt-3">
+                            <div class="progress-bar bg-warning" style="width: 76%">76%</div>
+                        </div>
+                        <small class="text-muted">of budget used</small>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-8">
+                <div class="content-card">
+                    <div class="content-card-header d-flex justify-content-between">
+                        <h5 class="mb-0"><i class="bi bi-tools me-2"></i>Services (4)</h5>
+                        <button class="btn btn-sm btn-success">+ Add Service</button>
+                    </div>
+                    <div class="content-card-body p-0">
+                        <table class="table mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Service</th>
+                                    <th>Vendor</th>
+                                    <th>Cost</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Full Catering Package</td>
+                                    <td>Waridi Catering Services</td>
+                                    <td>KES 180,000.00</td>
+                                </tr>
+                                <tr>
+                                    <td>PA System & DJ</td>
+                                    <td>Sound Masters Kenya</td>
+                                    <td>KES 45,000.00</td>
+                                </tr>
+                                <tr>
+                                    <td>Venue Decoration</td>
+                                    <td>Floral Designs Ltd</td>
+                                    <td>KES 85,000.00</td>
+                                </tr>
+                                <tr>
+                                    <td>Photography Package</td>
+                                    <td>Classic Photography</td>
+                                    <td>KES 35,000.00</td>
+                                </tr>
+                            </tbody>
+                            <tfoot class="table-group-divider">
+                                <tr class="table-active">
+                                    <th colspan="2" class="text-end">Total:</th>
+                                    <th>KES 345,000.00</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SCREENSHOT 6: SUCCESS MESSAGE -->
+<div class="screenshot-section">
+    <div class="sidebar">
+        <h4><i class="bi bi-calendar-event"></i> WEMS</h4>
+        <nav class="mt-4">
+            <a href="#" class="nav-link"><i class="bi bi-speedometer2"></i> Dashboard</a>
+            <a href="#" class="nav-link active"><i class="bi bi-people"></i> Clients</a>
+        </nav>
+    </div>
+    <div class="main-content">
+        <div class="alert alert-success d-flex align-items-center">
+            <i class="bi bi-check-circle-fill me-3" style="font-size: 1.5rem;"></i>
+            <div>
+                <strong>Success!</strong> Client added successfully.
+            </div>
+        </div>
+        
+        <div class="content-card">
+            <div class="content-card-header">
+                <h5 class="mb-0">All Clients</h5>
+            </div>
+            <div class="content-card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Johnson Wedding Party</td>
+                            <td>johnson.family@email.com</td>
+                            <td>0722123456</td>
+                        </tr>
+                        <tr class="table-success">
+                            <td>Corporate Events Ltd</td>
+                            <td>info@corporateevents.co.ke</td>
+                            <td>0722999888</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SCREENSHOT 7: ERROR MESSAGE -->
+<div class="screenshot-section">
+    <div class="sidebar">
+        <h4><i class="bi bi-calendar-event"></i> WEMS</h4>
+        <nav class="mt-4">
+            <a href="#" class="nav-link"><i class="bi bi-speedometer2"></i> Dashboard</a>
+            <a href="#" class="nav-link active"><i class="bi bi-people"></i> Clients</a>
+        </nav>
+    </div>
+    <div class="main-content">
+        <div class="alert alert-danger">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+            <strong>Error!</strong> The email has already been taken.
+        </div>
+        
+        <div class="content-card">
+            <div class="content-card-header">
+                <h5 class="mb-0">Add New Client</h5>
+            </div>
+            <div class="content-card-body">
+                <form>
+                    <div class="mb-3">
+                        <label class="form-label">Full Name <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control is-valid" value="Test Client">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email <span class="text-danger">*</span></label>
+                        <input type="email" class="form-control is-invalid" value="johnson.family@email.com">
+                        <div class="invalid-feedback">The email has already been taken.</div>
+                    </div>
+                    <button type="button" class="btn btn-primary">Save Client</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SCREENSHOT 8: CLIENT PORTAL -->
+<div class="screenshot-section">
+    <div class="sidebar">
+        <h4><i class="bi bi-calendar-event"></i> WEMS</h4>
+        <small style="color: #bdc3c7;">Client Portal</small>
+        <nav class="mt-4">
+            <a href="#" class="nav-link active"><i class="bi bi-speedometer2"></i> My Account</a>
+            <a href="#" class="nav-link"><i class="bi bi-calendar-check"></i> My Events</a>
+            <a href="#" class="nav-link"><i class="bi bi-receipt"></i> Invoices</a>
+        </nav>
+    </div>
+    <div class="main-content">
+        <div class="alert alert-info">
+            <i class="bi bi-shield-check me-2"></i>This is your private portal. Only you can see your events and information.
+        </div>
+        
+        <div class="top-navbar">
+            <h5 class="mb-0">Welcome, Johnson Wedding Party</h5>
+        </div>
+        
+        <div class="row g-4 mb-4">
+            <div class="col-md-4">
+                <div class="stat-card" style="border-left-color: #3498db;">
+                    <div class="stat-icon"><i class="bi bi-calendar-check"></i></div>
+                    <h3>1</h3>
+                    <p class="stat-label">Total Events</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stat-card" style="border-left-color: #27ae60;">
+                    <div class="stat-icon"><i class="bi bi-calendar-event"></i></div>
+                    <h3>1</h3>
+                    <p class="stat-label">Upcoming</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stat-card" style="border-left-color: #e74c3c;">
+                    <div class="stat-icon"><i class="bi bi-cash-stack"></i></div>
+                    <h3>KES 345K</h3>
+                    <p class="stat-label">Total Invested</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <div class="content-card-header">
+                <h5 class="mb-0">My Recent Events</h5>
+            </div>
+            <div class="content-card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Event</th>
+                            <th>Date</th>
+                            <th>Budget Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Johnson Wedding Reception</td>
+                            <td>Jun 15, 2024</td>
+                            <td>
+                                <div class="progress" style="width: 100px; height: 20px;">
+                                    <div class="progress-bar bg-warning" style="width: 76%">76%</div>
+                                </div>
+                            </td>
+                            <td><button class="btn btn-sm btn-primary">Details</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

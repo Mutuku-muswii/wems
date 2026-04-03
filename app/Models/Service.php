@@ -13,7 +13,15 @@ class Service extends Model
         'event_id',
         'vendor_id',
         'name',
-        'cost'
+        'description',
+        'cost',
+        'status',
+        'delivered_on_time',
+    ];
+
+    protected $casts = [
+        'cost' => 'decimal:2',
+        'delivered_on_time' => 'boolean',
     ];
 
     public function event()

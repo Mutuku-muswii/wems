@@ -5,24 +5,44 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Service extends Model
+class Vendor extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'event_id',
-        'vendor_id',
         'name',
-        'cost'
+        'service_type',      // What they do: Catering, Sound, Decor, etc.
+        'contact',         // Contact person name
+        'email',
+        'phone',
+        'address',
+        'standard_rate',   // Optional: Their typical starting price
+        'notes',           // Additional info
     ];
 
-    public function event()
+    protected $casts = [
+        'standard_rate' => 'decimal:2',
+    ];
+
+    public function services()
     {
-        return $this->belongsTo(Event::class);
+        return $this->hasMany(Service::class);
     }
 
-    public function vendor()
+    public function reviews()
     {
-        return $this->belongsTo(Vendor::class);
+        return $this->hasMany(VendorReview::class);
+    }
+
+    // Total earned from all events
+    public function getTotalEarnedAttribute()
+    {
+        return $this->services()->sum('cost');
+    }
+
+    // Number of events worked
+    public function getEventsCountAttribute()
+    {
+        return $this->services()->distinct('event_id')->count();
     }
 }

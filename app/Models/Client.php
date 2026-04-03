@@ -12,11 +12,18 @@ class Client extends Model
     protected $fillable = [
         'name',
         'email',
-        'phone'
+        'phone',
+        'address',
+        'company',
     ];
 
     public function events()
     {
         return $this->hasMany(Event::class);
+    }
+
+    public function user()
+    {
+        return $this->hasOne(User::class);
     }
 }

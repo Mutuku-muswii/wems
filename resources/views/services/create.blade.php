@@ -6,7 +6,7 @@
 
 <h2>Add Service</h2>
 
-<form action="{{ route('services.store') }}" method="POST">
+<form action="{{ route('services.store', $event_id) }}" method="POST">
 
 @csrf
 
